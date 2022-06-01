@@ -5,10 +5,10 @@ function lengthOfLongestSubstring(s: string): number {
     for(let i = 0 ; i < s.length ; i++){
         const currentChar = s[i].charCodeAt(0);
         if(lastOccur[currentChar] !== undefined){
-            startIndex = Math.max(startIndex,lastOccur[currentChar] + 1);
+            startIndex = startIndex > lastOccur[currentChar] + 1 ? startIndex : lastOccur[currentChar] + 1;
         }
         lastOccur[currentChar] = i;
-        max = Math.max(max,i - startIndex + 1);
+        max = max > i - startIndex + 1 ?max : i - startIndex + 1;
     }
     return max;
 };
