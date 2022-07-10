@@ -3,6 +3,7 @@ function diagonalSort(mat: number[][]): number[][] {
     const numberOfColumns = mat[0].length;
     const sortedMatrix = new Array<number[]>(numberOfRows);
     
+    // sort left bottom half of matrix 
     for(let row = numberOfRows - 1, column = 0 ; row >= 0 ; row--){
         sortedMatrix[row] = new Array<number>(numberOfColumns); 
         let diagonal = [];
@@ -20,6 +21,7 @@ function diagonalSort(mat: number[][]): number[][] {
         }
     }
     
+    // sort right top half of matrix
     for(let column = 1, row = 0 ; column < numberOfColumns ; column++){
         let diagonal = [];
         for(let currentColumn = column, currentRow = row; 
