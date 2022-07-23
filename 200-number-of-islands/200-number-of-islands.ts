@@ -4,7 +4,6 @@ function numIslands(grid: string[][]): number {
         for(let j = 0 ; j < grid[i].length ; j++){
             if(Boolean(Number(grid[i][j]))){
                 numberOfIslands++;
-                console.log(i, j, numberOfIslands)
                 dfs(i, j, grid);
             }
         }
