@@ -1,9 +1,8 @@
 function checkIfExist(arr: number[]): boolean {
-    const set = new Set<number>();
-    for(let i = 0 ; i < arr.length - 1 ; i++){
-        for(let j = i + 1 ; j < arr.length ; j++){
-            if(arr[i] === arr[j] * 2 || arr[i] * 2 === arr[j]) return true;
-        }
-    }
+    const map = new Map<number, number>();
+    for(let i = 0 ; i < arr.length ; i++)
+        map.set(arr[i], i);
+    for(let i = 0 ; i < arr.length ; i++)
+        if(map.has(arr[i] * 2) && map.get(arr[i] * 2) !== i) return true;
     return false;
 };
