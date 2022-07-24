@@ -13,10 +13,10 @@ function numIslands(grid: string[][]): number {
 
 const directions = [[0, -1], [0, 1], [1, 0], [-1, 0]]
 function dfs(i:number, j:number, grid:string[][]){
-    if(!check(i, j, grid)) return;
     grid[i][j] = "0";
     for(const [x, y] of directions)
-        dfs(x+i, y+j, grid);
+        if(check(x+i, y+j, grid))
+            dfs(x+i, y+j, grid);
 }
     
 function check(i:number, j:number, grid:string[][]){
