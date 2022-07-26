@@ -1,6 +1,5 @@
 const LAND = 0;
 const WATER = 1;
-const directions = [[0, 1], [0, -1], [1, 0], [-1, 0]];
 function closedIsland(grid: number[][]): number {
     const visited = new Set<string>()
     let count = 0;
