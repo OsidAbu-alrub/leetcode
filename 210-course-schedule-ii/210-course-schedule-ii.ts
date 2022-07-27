@@ -5,8 +5,8 @@ function findOrder(n: number, edges: number[][]): number[] {
 	const graph = new Map<number, Array<number>>();
 	const visited = new Array<number>(n).fill(UNVISITED);
 	for (let i = 0; i < n; i++) graph.set(i, []);
-	for (const [n1, n2] of edges) 
-		graph.get(n2)!.push(n1);
+	for (const [course, prerequisite] of edges) 
+		graph.get(prerequisite)!.push(course);
 
 	let numberOfGraphs = 0;
     const topologicalSortPath = [];
