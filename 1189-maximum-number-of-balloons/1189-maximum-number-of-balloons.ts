@@ -9,6 +9,9 @@ function maxNumberOfBalloons(text: string): number {
         if(balloonMap.has(char))
             balloonMap.set(char, balloonMap.get(char) + 1);
     }
+	
+	// we divide by two because these characters are 
+	// needed twice to form one word
     balloonMap.set("l", balloonMap.get("l") >> 1);
     balloonMap.set("o", balloonMap.get("o") >> 1);
     let answer = Number.MAX_SAFE_INTEGER;
