@@ -1,12 +1,14 @@
+const WATER = 0;
+const LAND = 1;
 function islandPerimeter(grid: number[][]): number {
     const visited = new Set<string>();
-    let ans = 0;
-    for(let i = 0 ; i < grid.length ; i++){
-        for(let j = 0 ; j < grid[i].length ; j++){
-            if(grid[i][j] === 1)
+    for(let i = 0 ; i < grid.length ; i++)
+        for(let j = 0 ; j < grid[i].length ; j++)  
+            if(grid[i][j] === LAND)
+                
+                // since all land is connected, first land we see
+                // and do DFS over, will return the answer
                 return dfs(i, j, grid, visited);
-        }
-    }
     return 0;
 };
 
@@ -23,8 +25,9 @@ function dfs(i:number, j:number, grid:number[][], visited: Set<string>){
 
 function isWater(i:number, j:number, grid:number[][]){
     try{
+        // if index is out of bound
         if(grid[i][j] === undefined) return true;
-        return grid[i][j] === 0;
+        return grid[i][j] === WATER;
     }
     catch(e){
         return true;
