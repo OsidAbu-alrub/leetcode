@@ -1,3 +1,4 @@
+// this question basically says, check if graph is connected or not
 function canVisitAllRooms(rooms: number[][]): boolean {
     const startRoom = 0;
     const visited = new Set<number>();
