@@ -4,11 +4,9 @@ function checkInclusion(s1: string, s2: string): boolean {
     targetHash[char] = (targetHash[char] ?? 0) + 1;
 
   let frequencyChar = {};
-  let charCount = 0;
   for(let windowStart = 0, windowEnd = 0 ; windowEnd < s2.length ; windowEnd++){
     const char = s2[windowEnd];
     frequencyChar[char] = (frequencyChar[char] ?? 0) + 1;
-    charCount++;
 
     const hasPermutation = Object.entries(targetHash).every(([char, frequency]) => 
         frequencyChar[char] === frequency
@@ -19,13 +17,12 @@ function checkInclusion(s1: string, s2: string): boolean {
     // we found a character that is not in pattern
     // or a char is repeated more times than in pattern
     // shrink window
-    if(charCount >= s1.length){
+    if(windowEnd >= s1.length - 1){
       const leftChar = s2[windowStart];
       frequencyChar[leftChar] -= 1;
       if(frequencyChar[leftChar] === 0)
         delete frequencyChar[leftChar];
       windowStart++;
-      charCount--;
     }
   }
   return false;
