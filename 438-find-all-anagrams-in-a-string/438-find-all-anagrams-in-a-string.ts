@@ -1,3 +1,5 @@
+// s1 is an alias for p
+// s2 is an alias for s
 function findAnagrams(s2: string, s1: string): number[] {
   // store all the values in s1 in a hashmap called target
   const targetHash = {};
@@ -23,6 +25,9 @@ function findAnagrams(s2: string, s1: string): number[] {
     const hasPermutation = Object.entries(targetHash).every(([char, frequency]) => 
         frequencyChar[char] === frequency
     )
+    
+    // if we have a permutation, 
+    // add the index of windowStart to ans array
     if(hasPermutation) ans.push(windowStart);
 
     // we know that length of our window should always be
@@ -38,7 +43,5 @@ function findAnagrams(s2: string, s1: string): number[] {
       windowStart++;
     }
   }
-  
-  // no anagram was found, return false
   return ans;
 };
