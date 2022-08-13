@@ -1,9 +1,11 @@
 function removeDuplicates(nums: number[]): number {
-    let uniqueCounter = 1;
-    for(let i = 0 ; i < nums.length ; i++){
-        if(nums[uniqueCounter - 1] !== nums[i]) {
-            nums[uniqueCounter++] = nums[i];
-        };
+  let ans = 1;
+  for(let left = 0, right = 0 ; right < nums.length ; right++){
+    if(nums[left] !== nums[right]){
+      left++;
+      ans++;
+      nums[left] = nums[right];
     }
-    return uniqueCounter;
+  }
+  return ans;
 };
