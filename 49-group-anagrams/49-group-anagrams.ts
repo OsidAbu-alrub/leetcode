@@ -1,5 +1,4 @@
 function groupAnagrams(strs: string[]): string[][] {
-    const ans = [];
     const map = new Map<string, Array<string>>();
     for(const str of strs){
         const sortedStr = [...str].sort().join("");
@@ -7,7 +6,5 @@ function groupAnagrams(strs: string[]): string[][] {
             map.set(sortedStr, []);
         map.get(sortedStr).push(str);
     }
-    for(const [,values] of map)
-        ans.push(values);
-    return ans;
+    return Array.from(map.values());
 };
