@@ -12,6 +12,7 @@ function numIslands(grid: string[][]): number {
 };
 
 const directions = [[0, -1], [0, 1], [1, 0], [-1, 0]]
+
 function dfs(i:number, j:number, grid:string[][]){
     grid[i][j] = "0";
     for(const [x, y] of directions)
