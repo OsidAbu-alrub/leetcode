@@ -1,10 +1,13 @@
 function thirdMax(nums: number[]): number {
+  
+  // find first max
   let max = -Infinity;
   for(const num of nums)
     if(num > max) max = num;
   
+  // use difference to find second max
   let minDiff = Infinity;
-  let secondMax = -Infinity;
+  let secondMax = max;
   for(const num of nums){
     const difference = max - num;
     if(num !== max && difference < minDiff){
@@ -13,8 +16,9 @@ function thirdMax(nums: number[]): number {
     }
   }
   
+  // use difference to find third max
   minDiff = Infinity;
-  let thirdMax = -Infinity;
+  let thirdMax = max;
   for(const num of nums){
     const difference = secondMax - num;
     if(num !== max && num !== secondMax && difference < minDiff){
@@ -23,5 +27,5 @@ function thirdMax(nums: number[]): number {
     }
   }
   
-  return thirdMax === -Infinity ? max : thirdMax;
+  return thirdMax;
 };
