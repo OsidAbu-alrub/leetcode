@@ -13,26 +13,22 @@
  */
 
 function zigzagLevelOrder(root: TreeNode | null): number[][] {
-  if(!root) return [];
-  
-  const queue: Array<[TreeNode, number]> = [[root, 1]];
-  const traversedValues = []
+  let currentLevel: Array<[TreeNode, number]> = [[root, 1]];
+  let nextLevel: Array<[TreeNode, number]> = [];
   let currentLevelValues = []
-  let currentLevel = 1;
-  while(queue.length){
-    const [node, level] = queue.shift();
-    if(node.left) queue.push([node.left, level + 1]);
-    if(node.right) queue.push([node.right, level + 1]);
+  const ans = [];
+  while(currentLevel.length && root){
+    const [node, level] = currentLevel.shift();
+    currentLevelValues.push(node.val);
     
-    if(currentLevel !== level) {
-      traversedValues[currentLevel - 1] = currentLevelValues;
+    if(node.left) nextLevel.push([node.left, level + 1]);
+    if(node.right) nextLevel.push([node.right, level + 1]);
+    
+    if(!currentLevel.length) {
+      ans.push(level % 2 === 0 ? currentLevelValues.reverse() : currentLevelValues);
       currentLevelValues = [];
-      currentLevel = level;
+      [currentLevel, nextLevel] = [nextLevel, currentLevel];
     }
-    
-    if(currentLevel % 2 === 0) currentLevelValues.unshift(node.val);
-    else currentLevelValues.push(node.val);
   }
-  traversedValues[currentLevel - 1] = currentLevelValues;
-  return traversedValues;
+  return ans;
 };
