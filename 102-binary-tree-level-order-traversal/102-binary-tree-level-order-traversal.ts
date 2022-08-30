@@ -13,16 +13,25 @@
  */
 
 function levelOrder(root: TreeNode | null): number[][] {
-    const levelOrderArray = {};
-    const currentLevel = 1;
-    traverse(root,levelOrderArray,currentLevel);
-    return Object.values(levelOrderArray);
+  let currentLevel = [root];
+  let nextLevel = [];
+  let currentLevelValues = [];
+  const ans = [];
+  while(currentLevel.length && root){
+    const node = currentLevel.shift();
+    currentLevelValues.push(node.val);
+    
+    if(node.left) nextLevel.push(node.left);
+    if(node.right) nextLevel.push(node.right);
+    
+    if(!currentLevel.length){
+      ans.push(currentLevelValues);
+      currentLevelValues = [];
+      [currentLevel, nextLevel] = [nextLevel, currentLevel];
+    }
+  }
+  return ans;
 };
 
 function traverse(root: TreeNode | null, levelOrderArray: object,currentLevel:number){
-    if(!root) return;
-    if(!levelOrderArray[currentLevel]) levelOrderArray[currentLevel] = [];
-    levelOrderArray[currentLevel].push(root.val);
-    traverse(root.left,levelOrderArray,currentLevel + 1);
-    traverse(root.right,levelOrderArray,currentLevel + 1);
 }
