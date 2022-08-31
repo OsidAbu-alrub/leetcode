@@ -37,8 +37,11 @@ function reorderList(head: ListNode | null): void {
     secondHalf = temp;
   }
   
+  
   let left = head;
   let right = prev;
+
+  // alternate nodes
   while(left && right){
     const tempLeft = left.next;
     const tempRight = right.next;
