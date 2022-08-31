@@ -13,11 +13,11 @@
  */
 
 function lowestCommonAncestor(root: TreeNode | null, p: TreeNode | null, q: TreeNode | null): TreeNode | null {
-  let result = [];
+  const result = [];
   dfs(root, p, [], result);
   dfs(root, q, [], result);
   const [pathToP, pathToQ] = result;
-  let lowestCommonAncestor = null;
+  let lowestCommonAncestor = root;
   for(let i = 0 ; i < Math.min(pathToP.length, pathToQ.length) ; i++){
     if(pathToP[i] === pathToQ[i])
       lowestCommonAncestor = pathToP[i];
@@ -25,8 +25,8 @@ function lowestCommonAncestor(root: TreeNode | null, p: TreeNode | null, q: Tree
   return lowestCommonAncestor;
 };
 
-function dfs(root: TreeNode | null, targetNode: TreeNode | null, path: TreeNode[], result: Array<TreeNode[]>) : boolean {
-  if(!root) return false;
+function dfs(root: TreeNode | null, targetNode: TreeNode | null, path: TreeNode[], result: Array<TreeNode[]>) {
+  if(!root) return;
   path.push(root);
   if(root === targetNode)
     result.push([...path]);
