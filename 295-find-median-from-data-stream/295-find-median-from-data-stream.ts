@@ -1,4 +1,10 @@
 class MedianFinder {
+  
+  // we only care about middle element
+  // so we use max heap to keep all elements that are less than middle
+  // and we use min heap to keep all elements that are greater than middle
+  // note that peek of max heap and min heap in this case can be used to calculate
+  // our median
   minHeap;
   maxHeap;
   constructor() {
