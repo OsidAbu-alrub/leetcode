@@ -12,11 +12,15 @@ function dfs(str, result, index){
   
   if(isNaN(Number(str[index])))
   {
+    // we have two options if it is a character
+    // try with character being uppercase
     str[index] = str[index].toUpperCase();
     dfs(str, result, index + 1);
+    
+    // try with character being lowercase
     str[index] = str[index].toLowerCase();
     dfs(str, result, index + 1);
   }
-  else
+  else // if it is a number
     dfs(str, result, index + 1);
 }
