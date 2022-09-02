@@ -10,9 +10,14 @@ function dfs(word:string[], result: string[], index: number) {
     return;
   }
   
+  // store the current char
   const char = word[index];
+  
+  // replace current char with one
   word[index] = "1";
   dfs(word, result, index + 1);
+  
+  // then try without replacing current char
   word[index] = char;
   dfs(word, result, index + 1);
 }
