@@ -1,11 +1,17 @@
+// This question can be rephrased as:
+// How many connected graphs we have
 function findCircleNum(isConnected: number[][]): number {
   let numberOfProvinces = 0;
   const visited = new Set<number>();
-  for(let i = 0 ; i < isConnected.length ; i++)
+  for(let i = 0 ; i < isConnected.length ; i++){
+    
+    // if I find a node that I haven't visited before (new graph)
+    // then visit all its neighbors (flood fill)
     if(!visited.has(i)){
       numberOfProvinces++;
       dfs(i, isConnected, visited);
     }
+  }
   
   return numberOfProvinces;
 };
