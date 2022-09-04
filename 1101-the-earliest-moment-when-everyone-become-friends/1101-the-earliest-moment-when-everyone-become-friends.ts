@@ -1,6 +1,8 @@
 // this question can be rephrased to:
 // When did the graph become connected
 function earliestAcq(logs: number[][], n: number): number {
+  
+  // sort events based on timestamp
   logs.sort(([t1], [t2]) => t1 - t2);
   
   // this resembles the graph person: Array<[anotherPerson, timestamp]>
