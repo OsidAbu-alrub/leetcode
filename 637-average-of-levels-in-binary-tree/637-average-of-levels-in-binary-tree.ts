@@ -6,7 +6,7 @@ function averageOfLevels(root: TreeNode | null): number[] {
   const averages = [];
   while(currentLevel.length){
     const current = currentLevel.shift();
-    sumAtLevel = (sumAtLevel + current.val) % Number.MAX_SAFE_INTEGER;
+    sumAtLevel = sumAtLevel + current.val;
     numberOfNodesAtLevel++;
 
     if(current.left) nextLevel.push(current.left);
