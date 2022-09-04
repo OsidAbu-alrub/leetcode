@@ -1,4 +1,8 @@
+// question can be rephrased to:
+// How many graphs do we have?
 function countComponents(n: number, edges: number[][]): number {
+  
+  // build the graph
   const graph = new Map<number, Array<number>>();
   for(let i = 0 ; i < n ; i++)
     graph.set(i, []);
@@ -7,6 +11,8 @@ function countComponents(n: number, edges: number[][]): number {
     graph.get(v2).push(v1);
   }
   
+  
+  // do dfs on each node
   const visited = new Set<number>();
   let numberOfComponents = 0;
   for(const node of graph.keys())
