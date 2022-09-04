@@ -8,7 +8,9 @@ const MOVE_TO_NUMBER_MAP = {
 
 function judgeCircle(moves: string): boolean {
   const coordinates = [0, 0];
-  for(const char of moves)
-    [coordinates[0], coordinates[1]] = [coordinates[0] + MOVE_TO_NUMBER_MAP[char][0], coordinates[1] + MOVE_TO_NUMBER_MAP[char][1]];
+  for(const char of moves){
+    coordinates[0] = coordinates[0] + MOVE_TO_NUMBER_MAP[char][0]; 
+    coordinates[1] = coordinates[1] + MOVE_TO_NUMBER_MAP[char][1]
+  }
   return coordinates[0] === 0 && coordinates[1] === 0;
 };
