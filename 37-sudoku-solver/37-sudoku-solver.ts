@@ -11,7 +11,7 @@ function solveSudoku(board: string[][]): void {
 function solve(board: string[][]) : boolean{
   for(let i = 0 ; i < NUMBER_OF_ROWS ; i++){
     for(let j = 0 ; j < NUMBER_OF_COLUMNS ; j++){
-      if(board[i][j] === "."){
+      if(board[i][j] === EMPTY_CELL){
         for(let val = 1 ; val <= 9 ; val++) {
           if(check(i, j, String(val), board)) {
             board[i][j] = String(val)
