@@ -5,20 +5,30 @@ function permuteUnique(nums: number[]): number[][] {
   return result;
 };
 
-function dfs(nums, visited, path, result){
+function dfs(nums, used, path, result){
+  
+  // if path has same length as nums
+  // then we have a new permutation
   if(path.length === nums.length){
     result.push([...path]);
     return;
   }
   
   for(let i = 0 ; i < nums.length ; i++){
-    if(visited[i] || nums[i - 1] === nums[i] && !visited[i - 1]) continue;
-    visited[i] = true;
+    // skip over seen elements OR 
+    // if the current element is the same as previous element AND
+    // the previous element is not used, then skip
+    // The reason for the second condition is the fact that if
+    // I'm at index "i" and previous element is same as me, and 
+    // I'm not using the previous element. This means if I used my current
+    // element (me) then this will result in duplicate permutaiton
+    if(used[i] || nums[i - 1] === nums[i] && !used[i - 1]) continue;
+    used[i] = true;
     path.push(nums[i]);
     
-    dfs(nums, visited, path, result);
+    dfs(nums, used, path, result);
     
-    visited[i] = false;
+    used[i] = false;
     path.pop();
   }
 }
