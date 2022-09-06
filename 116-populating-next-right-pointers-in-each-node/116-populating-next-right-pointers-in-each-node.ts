@@ -4,12 +4,9 @@ function connect(root: Node | null): Node | null {
   let prev = null;
   while(currentLevel.length && root){
     const node = currentLevel.shift();
-    if(prev){
+    if(prev)
       prev.next = node;
-      prev = node;
-    }
-    if(!prev)
-      prev = node;
+    prev = node;
     if(node.left) nextLevel.push(node.left);
     if(node.right) nextLevel.push(node.right);
 
