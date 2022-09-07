@@ -5,6 +5,9 @@ function findBuildings(heights: number[]): number[] {
   let i = heights.length - 1;
   
   for(let j = heights.length - 2 ; j >= 0 ; j--){
+    
+    // if the height at j is greater than the height at i
+    // then this is our new max height
     if(heights[j] > heights[i]){
       ans.push(j);
       i = j;
