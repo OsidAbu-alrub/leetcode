@@ -8,8 +8,8 @@ class SparseVector {
     dotProduct(vec: SparseVector): number {
       let product = 0;
       const nums = this.nums;
-      for(let i = 0 ; i < Math.max(vec.nums.length, nums.length) ; i++)
-        product = product + (vec.nums[i] ?? 0) * (nums[i] ?? 0);
+      for(let i = 0 ; i < Math.min(vec.nums.length, nums.length) ; i++)
+        product = product + vec.nums[i] * nums[i];
       return product
     }
 }
