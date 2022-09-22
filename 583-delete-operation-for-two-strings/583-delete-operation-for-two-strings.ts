@@ -1,17 +1,28 @@
 function minDistance(word1: string, word2: string): number {
-    let W1 = word1;
-    let W2 = word2;
-    let m = W1.length, n = W2.length
-    if (m < n) [W1, W2, m, n] = [W2, W1, n, m]
-    let WA1 = W1.split(""), WA2 = W2.split(""),
-        dpLast = new Uint16Array(n + 1),
-        dpCurr = new Uint16Array(n + 1)
-    for (let i = 0; i < m; i++) {
-        for (let j = 0; j < n; j++) 
-            dpCurr[j+1] = WA1[i] === WA2[j]
-                ? dpLast[j] + 1
-                : Math.max(dpCurr[j], dpLast[j+1]);
-        [dpLast, dpCurr] = [dpCurr, dpLast]
-    }
-    return m + n - 2 * dpLast[n] 
+  const cache = Array.from(new Array(Math.max(word1.length, word2.length)), () => []);
+  return helper(word1, word2, 0, 0, cache);
 };
+
+function helper(word1, word2, i, j, cache) {
+  if(i === word1.length && j === word2.length){
+    return 0;
+  }
+  
+  if(i === word1.length){
+    return word2.length - j;
+  }
+  
+  if(j === word2.length){
+    return word1.length - i;
+  }
+  
+  if(cache[i][j]) return cache[i][j];
+  
+  if(word1[i] === word2[j]){
+    cache[i][j] = helper(word1, word2, i+1, j+1, cache);
+    return cache[i][j];
+  }
+  
+  cache[i][j] = Math.min(helper(word1, word2, i + 1, j, cache), helper(word1, word2, i, j + 1, cache)) + 1;
+  return cache[i][j];
+}
