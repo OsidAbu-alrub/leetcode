@@ -27,14 +27,15 @@ function dfs(root: TreeNode | null, targetSum: number, currentSum: number, curre
   
   // check if we are at leaf and current sum is equal to target sum
   // then copy over our current path to the result array
-  if(!root.left && !root.right && currentSum === targetSum)
+  if(!root.left && !root.right && currentSum === targetSum){
     result.push([...currentPath]);
-  else { 
-    // if not leaf nodes or current sum doesn't equal target sum 
-    // continue traversing over the tree
-    dfs(root.left, targetSum, currentSum, currentPath, result);
-    dfs(root.right, targetSum, currentSum, currentPath, result);
   }
+  
+  // if not leaf nodes or current sum doesn't equal target sum 
+  // continue traversing over the tree
+  dfs(root.left, targetSum, currentSum, currentPath, result);
+  dfs(root.right, targetSum, currentSum, currentPath, result);
+  
   // at the end, pop the current node from our current path array
   // because we are backtracking => so we are going to use a path with
   // different node
