@@ -18,15 +18,17 @@ function pathSum(root: TreeNode | null, targetSum: number): number[][] {
   return result;
 };
 
-function dfs(root: TreeNode | null, targetSum: number, currentSum: number, currentPath: number[], result: number[][]): void {
+function dfs(root: TreeNode | null, targetSum: number, currentSum: number, currentPath: number[], result: number[][]) {
   if(!root) return;
-  currentPath.push(root.val);
+  
   currentSum = currentSum + root.val;
-  if(!root.left && !root.right && currentSum === targetSum)
-    result.push([...currentPath]);
-  else {
-    dfs(root.left, targetSum, currentSum, currentPath, result);
-    dfs(root.right, targetSum, currentSum, currentPath, result);
+  currentPath.push(root.val);
+  if(currentSum === targetSum && !root.left && !root.right){
+    result.push([...currentPath])
   }
+  
+  dfs(root.left, targetSum, currentSum, currentPath, result);
+  dfs(root.right, targetSum, currentSum, currentPath, result);
   currentPath.pop();
+  currentSum = currentSum - root.val;
 }
