@@ -21,14 +21,22 @@ function pathSum(root: TreeNode | null, targetSum: number): number[][] {
 function dfs(root: TreeNode | null, targetSum: number, currentSum: number, currentPath: number[], result: number[][]) {
   if(!root) return;
   
-  currentSum = currentSum + root.val;
+  // add the current node to our path
   currentPath.push(root.val);
-  if(currentSum === targetSum && !root.left && !root.right){
-    result.push([...currentPath])
-  }
+  currentSum = currentSum + root.val;
   
-  dfs(root.left, targetSum, currentSum, currentPath, result);
-  dfs(root.right, targetSum, currentSum, currentPath, result);
+  // check if we are at leaf and current sum is equal to target sum
+  // then copy over our current path to the result array
+  if(!root.left && !root.right && currentSum === targetSum)
+    result.push([...currentPath]);
+  else { 
+    // if not leaf nodes or current sum doesn't equal target sum 
+    // continue traversing over the tree
+    dfs(root.left, targetSum, currentSum, currentPath, result);
+    dfs(root.right, targetSum, currentSum, currentPath, result);
+  }
+  // at the end, pop the current node from our current path array
+  // because we are backtracking => so we are going to use a path with
+  // different node
   currentPath.pop();
-  currentSum = currentSum - root.val;
 }
